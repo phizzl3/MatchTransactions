@@ -1,43 +1,48 @@
 import itertools
 
-
-def get_total():
-    return input("What is the total amount?: ")
+import clearscreen
 
 
-def get_transactions():
+def get_total() -> str:
+    """Gets the total amount to try to calculate a match for."""
+    return input("\nWhat is the total amount?: ")
+
+
+def get_transactions() -> list:
+    """Gets each transaction to combine to look for a matching combo."""
     print("Enter each transaction amount and press enter."
           "\nEnter when done.")
-    t = []
+    transactions = []
     while True:
-        ea = input("Transaction: ").strip("$ ")
-        if ea:
-            t.append(float(ea.replace(',', '')))
+        each = input("Transaction: ").strip("$ ")
+        if each:
+            transactions.append(float(each.replace(',', '')))
         else:
-            return t
+            return transactions
 
 
-def get_combo_number():
-    return input("How many transactions should give you this total?: ")
+def find_matches(total: float, transactions: list) -> None:
+    """Searches every combination of the group of transactions to try to find
+    a set that adds up to the given total.
 
-
-def find_matches(tt, cn, ts):
-    combos = itertools.combinations(ts, int(cn))
+    Args:
+        total (float): The total amount to try to calculate a match for.
+        transactions (list): All of the transactions (float) to combine to 
+        look for a matching combo.
+    """
     match = False
-    for combo in combos:
-        if sum(combo) == float(tt):
-            print(f"Match Found: {combo} = {tt}")
-            match = True
+    for i in range(1, len(transactions)+1):
+        combos = itertools.combinations(transactions, i)
+        for combo in combos:
+            if sum(combo) == total:
+                print(f"Match Found: sum{combo} = {total}")
+                match = True
     if not match:
         print("No matches found.")
 
 
-def main():
-    total = get_total()
-    combo_num = get_combo_number()
-    transactions = get_transactions()
-    find_matches(total, combo_num, transactions)
-
-
 if __name__ == '__main__':
-    main()
+    clearscreen.clear()
+    total = get_total()
+    transactions = get_transactions()
+    find_matches(float(total), transactions)
