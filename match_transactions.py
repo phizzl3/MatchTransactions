@@ -1,3 +1,7 @@
+"""Searches every combination of the group of transactions to try to find
+    a set that adds up to the given total.
+"""
+
 import itertools
 
 import clearscreen
