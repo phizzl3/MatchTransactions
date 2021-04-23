@@ -39,14 +39,18 @@ def find_matches(total: float, transactions: list) -> None:
         combos = itertools.combinations(transactions, i)
         for combo in combos:
             if sum(combo) == total:
-                print(f"Match Found: sum{combo} = {total}")
+                print(f"\nMatch Found: sum{combo} = {total}\n")
                 match = True
     if not match:
-        print("No matches found.")
+        print("\nNo matches found.")
 
-
-if __name__ == '__main__':
+def main():
     clearscreen.clear()
     total = get_total()
     transactions = get_transactions()
     find_matches(float(total), transactions)
+
+
+if __name__ == '__main__':
+    main()
+    
