@@ -4,8 +4,6 @@
 
 import itertools
 
-import clearscreen
-
 
 def get_total() -> str:
     """Gets the total amount to try to calculate a match for."""
@@ -44,8 +42,8 @@ def find_matches(total: float, transactions: list) -> None:
     if not match:
         print("\nNo matches found.")
 
+
 def main():
-    clearscreen.clear()
     total = get_total()
     transactions = get_transactions()
     find_matches(float(total), transactions)
@@ -53,4 +51,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
