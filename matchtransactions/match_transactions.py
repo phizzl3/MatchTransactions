@@ -47,6 +47,7 @@ def main():
     total = get_total()
     transactions = get_transactions()
     find_matches(float(total), transactions)
+    input(" ENTER to close.")
 
 
 if __name__ == '__main__':
